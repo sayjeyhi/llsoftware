@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#4285f4" />
+    <meta name="description" content="Magical UI - Unleash The Power Of Performance" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="maskable" href="%PUBLIC_URL%/maskable_icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+
+    <title>Magical UI</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      @keyframes rotation {
+        0% {
+          transform: rotate(0deg);
+          border-top: 2px solid #aa00aa;
+        }
+        50% {
+          border-top: 4px solid #aa00aa;
+        }
+        100% {
+          transform: rotate(360deg);
+          border-top: 2px solid #aa00aa;
+        }
+      }
+      .pre-content {
+        min-width: 100vw;
+        min-height: 100vh;
+        color: #222;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        font-family: "Gilroy", sans-serif;
+      }
+      .pre-content span {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+        border-radius: 50%;
+        border: 2px solid #484a4d;
+        border-top: 2px solid #aa77aa;
+        animation: rotation infinite 1s linear;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <div class="pre-content">
+        <span></span>
+        <h1>Loading ...</h1>
+        <p>Magical UI - v2.1.1</p>
+      </div>
+    </div>
+  </body>
+</html>
