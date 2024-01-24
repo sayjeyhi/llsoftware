@@ -4,7 +4,7 @@ import { StFooterContainer } from "./styles";
 const Footer = () => {
   return (
     <StFooterContainer>
-      <h4> © Magical UI</h4>
+      <h4> © Long Lasting Software</h4>
       <span>2019 - {new Date().getFullYear()} </span>
     </StFooterContainer>
   );
