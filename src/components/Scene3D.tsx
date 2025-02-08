@@ -82,16 +82,22 @@ const Scene3D = () => {
     text.material = new THREE.MeshPhongMaterial({ 
       color: 0x9b87f5,
       emissive: 0x9b87f5,
-      emissiveIntensity: 0.2,
+      emissiveIntensity: 0.3,
+      shininess: 100,
+      specular: 0xffffff,
     });
     text.fontSize = 0.5;
     text.maxWidth = 2;
     text.lineHeight = 1;
     text.letterSpacing = 0.05;
     text.textAlign = 'center';
-    text.depthOffset = 1;
-    text.outlineWidth = 0.02;
+    text.depthOffset = 2;
+    text.outlineWidth = 0.05;
     text.outlineColor = 0x000000;
+    text.outlineOpacity = 1;
+    text.fillOpacity = 0.9;
+    text.depthOffset = 5;
+    text.sdfGlyphSize = 64;
     text.sync();
 
     scene.add(text);
