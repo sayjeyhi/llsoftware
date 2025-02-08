@@ -1,6 +1,7 @@
 
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { Text } from 'troika-three-text';
 
 const Scene3D = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -69,6 +70,19 @@ const Scene3D = () => {
     scene.add(leftBracketMesh);
     scene.add(rightBracketMesh);
 
+    // Create Dev text
+    const text = new Text();
+    text.text = 'Dev';
+    text.fontSize = 0.4;
+    text.position.set(0, 0, 0.2);
+    text.color = 0x9b87f5;
+    text.font = 'https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxM.woff';
+    text.anchorX = 'center';
+    text.anchorY = 'middle';
+    text.sync();
+
+    scene.add(text);
+
     camera.position.z = 5;
 
     // Animation
@@ -79,6 +93,8 @@ const Scene3D = () => {
       leftBracketMesh.rotation.y += 0.01;
       rightBracketMesh.rotation.x += 0.01;
       rightBracketMesh.rotation.y += 0.01;
+      text.rotation.x += 0.01;
+      text.rotation.y += 0.01;
 
       renderer.render(scene, camera);
     };
