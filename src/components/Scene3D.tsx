@@ -79,6 +79,19 @@ const Scene3D = () => {
     text.font = 'https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxM.woff';
     text.anchorX = 'center';
     text.anchorY = 'middle';
+    text.material = new THREE.MeshPhongMaterial({ 
+      color: 0x9b87f5,
+      emissive: 0x9b87f5,
+      emissiveIntensity: 0.2,
+    });
+    text.fontSize = 0.5;
+    text.maxWidth = 2;
+    text.lineHeight = 1;
+    text.letterSpacing = 0.05;
+    text.textAlign = 'center';
+    text.depthOffset = 1;
+    text.outlineWidth = 0.02;
+    text.outlineColor = 0x000000;
     text.sync();
 
     scene.add(text);
