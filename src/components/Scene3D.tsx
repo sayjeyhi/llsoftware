@@ -24,24 +24,50 @@ const Scene3D = () => {
     directionalLight.position.set(1, 1, 1);
     scene.add(directionalLight);
 
-    // Create objects
-    const torusGeometry = new THREE.TorusGeometry(1.5, 0.5, 16, 100);
-    const torusMaterial = new THREE.MeshPhongMaterial({ 
+    // Create code symbol shapes
+    const leftBracket = new THREE.Shape();
+    leftBracket.moveTo(-0.4, 0.8);
+    leftBracket.lineTo(-0.8, 0.4);
+    leftBracket.lineTo(-0.8, -0.4);
+    leftBracket.lineTo(-0.4, -0.8);
+    leftBracket.lineTo(-0.6, -0.8);
+    leftBracket.lineTo(-1, -0.4);
+    leftBracket.lineTo(-1, 0.4);
+    leftBracket.lineTo(-0.6, 0.8);
+    leftBracket.closePath();
+
+    const rightBracket = new THREE.Shape();
+    rightBracket.moveTo(0.4, 0.8);
+    rightBracket.lineTo(0.8, 0.4);
+    rightBracket.lineTo(0.8, -0.4);
+    rightBracket.lineTo(0.4, -0.8);
+    rightBracket.lineTo(0.6, -0.8);
+    rightBracket.lineTo(1, -0.4);
+    rightBracket.lineTo(1, 0.4);
+    rightBracket.lineTo(0.6, 0.8);
+    rightBracket.closePath();
+
+    const geometry1 = new THREE.ExtrudeGeometry(leftBracket, {
+      depth: 0.2,
+      bevelEnabled: false
+    });
+
+    const geometry2 = new THREE.ExtrudeGeometry(rightBracket, {
+      depth: 0.2,
+      bevelEnabled: false
+    });
+
+    const material = new THREE.MeshPhongMaterial({ 
       color: 0x9b87f5,
       transparent: true,
       opacity: 0.8
     });
-    const torus = new THREE.Mesh(torusGeometry, torusMaterial);
-    scene.add(torus);
 
-    const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-    const cubeMaterial = new THREE.MeshPhongMaterial({ 
-      color: 0x7E69AB,
-      transparent: true,
-      opacity: 0.9
-    });
-    const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    scene.add(cube);
+    const leftBracketMesh = new THREE.Mesh(geometry1, material);
+    const rightBracketMesh = new THREE.Mesh(geometry2, material);
+
+    scene.add(leftBracketMesh);
+    scene.add(rightBracketMesh);
 
     camera.position.z = 5;
 
@@ -49,10 +75,10 @@ const Scene3D = () => {
     const animate = () => {
       requestAnimationFrame(animate);
 
-      torus.rotation.x += 0.01;
-      torus.rotation.y += 0.01;
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+      leftBracketMesh.rotation.x += 0.01;
+      leftBracketMesh.rotation.y += 0.01;
+      rightBracketMesh.rotation.x += 0.01;
+      rightBracketMesh.rotation.y += 0.01;
 
       renderer.render(scene, camera);
     };
