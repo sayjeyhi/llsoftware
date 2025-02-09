@@ -1,7 +1,11 @@
 
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { Text } from 'troika-three-text';
+
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js';
+
 
 const Scene3D = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -13,14 +17,14 @@ const Scene3D = () => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    
+
     renderer.setSize(300, 300);
     containerRef.current.appendChild(renderer.domElement);
 
     // Lighting
     const ambientLight = new THREE.AmbientLight(0x404040);
     scene.add(ambientLight);
-    
+
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
     directionalLight.position.set(1, 1, 1);
     scene.add(directionalLight);
@@ -58,10 +62,10 @@ const Scene3D = () => {
       bevelEnabled: false
     });
 
-    const material = new THREE.MeshPhongMaterial({ 
-      color: 0x9b87f5,
+    const material = new THREE.MeshPhongMaterial({
+      color: '#d40000',
       transparent: true,
-      opacity: 0.8
+      opacity: 1
     });
 
     const leftBracketMesh = new THREE.Mesh(geometry1, material);
@@ -70,52 +74,53 @@ const Scene3D = () => {
     scene.add(leftBracketMesh);
     scene.add(rightBracketMesh);
 
-    // Create Dev text
-    const text = new Text();
-    text.text = 'Dev';
-    text.fontSize = 0.4;
-    text.position.set(0, 0, 0.2);
-    text.color = 0x9b87f5;
-    text.font = 'https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxM.woff';
-    text.anchorX = 'center';
-    text.anchorY = 'middle';
-    text.material = new THREE.MeshPhongMaterial({ 
-      color: 0x9b87f5,
-      emissive: 0x9b87f5,
-      emissiveIntensity: 0.3,
-      shininess: 100,
-      specular: 0xffffff,
-    });
-    text.fontSize = 0.5;
-    text.maxWidth = 2;
-    text.lineHeight = 1;
-    text.letterSpacing = 0.05;
-    text.textAlign = 'center';
-    text.depthOffset = 2;
-    text.outlineWidth = 0.05;
-    text.outlineColor = 0x000000;
-    text.outlineOpacity = 1;
-    text.fillOpacity = 0.9;
-    text.depthOffset = 5;
-    text.sdfGlyphSize = 64;
-    text.sync();
+    const texture = new THREE.TextureLoader().load('./2025-avatar.jpeg');
+    // show edge of sphere on image
+    const imageMesh = new THREE.Mesh(
+      new THREE.SphereGeometry(3, 64, 64, 0, -Math.PI, 0, Math.PI),
+      new THREE.MeshBasicMaterial({
+        map: texture,
+        transparent: true
+      }),
+    );
 
-    scene.add(text);
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+
+    const outlinePass = new OutlinePass(
+      new THREE.Vector2(window.innerWidth, window.innerHeight),
+      scene,
+      camera
+    );
+
+    outlinePass.selectedObjects = [imageMesh]; // Apply outline to the image sphere
+
+
+    outlinePass.edgeStrength = 1.0;  // Lower values for a thinner outline
+    outlinePass.edgeGlow = 0.0;      // Remove glowing effect
+    outlinePass.edgeThickness = 0.5; // Reduce thickness
+    outlinePass.visibleEdgeColor.set('#ffffff'); // Set edge color to white for better contrast
+    outlinePass.hiddenEdgeColor.set('#d11818'); // Ensure hidden edges blend properly
+    composer.addPass(outlinePass);
+
 
     camera.position.z = 5;
+    scene.add(imageMesh);
 
     // Animation
     const animate = () => {
       requestAnimationFrame(animate);
+      // renderer.render(scene, camera);
 
-      leftBracketMesh.rotation.x += 0.01;
-      leftBracketMesh.rotation.y += 0.01;
-      rightBracketMesh.rotation.x += 0.01;
-      rightBracketMesh.rotation.y += 0.01;
-      text.rotation.x += 0.01;
-      text.rotation.y += 0.01;
+      // Use composer instead of renderer
+      composer.render();
 
-      renderer.render(scene, camera);
+      // swing the image from left to right and back using sine
+      const res  =Math.sin(Date.now() / 1200) * Math.PI / 0.2;
+      // imageMesh.rotation.y = Math.sin(Date.now() / 1200) * Math.PI / 7;
+      imageMesh.rotation.y += 0.05;
+      leftBracketMesh.rotation.y = res;
+      rightBracketMesh.rotation.y = res;
     };
 
     animate();

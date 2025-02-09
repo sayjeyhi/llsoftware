@@ -5,17 +5,17 @@ const SocialLinks = () => {
   const links = [
     {
       icon: <Github className="w-6 h-6" />,
-      href: "https://github.com",
+      href: "https://github.com/sayjeyhi",
       label: "GitHub",
     },
     {
       icon: <Twitter className="w-6 h-6" />,
-      href: "https://twitter.com",
+      href: "https://x.com/sayjeyhi",
       label: "Twitter",
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
-      href: "https://linkedin.com",
+      href: "https://linkedin.com/in/jafar-rezaei",
       label: "LinkedIn",
     },
   ];
@@ -28,7 +28,7 @@ const SocialLinks = () => {
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
+          className="text-gray-600 hover:text-gray-900 transition-colors duration-200 dark:text-gray-400 dark:hover:text-white"
           aria-label={link.label}
         >
           {link.icon}
