@@ -35,7 +35,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ REPOSITORY_NAME }}:${{ env.COMMIT_SHA_SHORT }}
-            ghcr.io/${{ REPOSITORY_NAME }}:${{ env.CURRENT_DATE }}
-            ghcr.io/${{ REPOSITORY_NAME }}:latest
+            ghcr.io/${{ env.REPOSITORY_NAME }}:${{ env.COMMIT_SHA_SHORT }}
+            ghcr.io/${{ env.REPOSITORY_NAME }}:${{ env.CURRENT_DATE }}
+            ghcr.io/${{ env.REPOSITORY_NAME }}:latest
 
