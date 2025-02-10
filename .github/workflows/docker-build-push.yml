@@ -13,6 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set commit SHA short
+        run: |
+          echo "COMMIT_SHA_SHORT=${GITHUB_SHA::8}" >> $GITHUB_ENV
+          echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -29,7 +34,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:${{ github.sha.substring(0, 8) }}
-            ghcr.io/${{ github.repository }}:${{ github.event.head_commit.timestamp | date('YYYYMMDD-HHmmss') }}
+            ghcr.io/${{ github.repository }}:${{ env.COMMIT_SHA_SHORT }}
+            ghcr.io/${{ github.repository }}:${{ env.CURRENT_DATE }}
             ghcr.io/${{ github.repository }}:latest
 
