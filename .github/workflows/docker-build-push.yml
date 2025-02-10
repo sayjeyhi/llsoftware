@@ -24,6 +24,9 @@ jobs:
         with:
           bun-version: latest
 
+      - name: Remove lock file
+        run: rm -f bun.lock
+
       - name: Install dependencies
         run: bun i
 
