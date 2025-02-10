@@ -29,6 +29,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:${{ github.sha::8 }}-${{ github.event.head_commit.timestamp | date('YYYYMMDD-HHmmss') }}
+            ghcr.io/${{ github.repository }}:${{ github.sha.substring(0, 8) }}
+            ghcr.io/${{ github.repository }}:${{ github.event.head_commit.timestamp | date('YYYYMMDD-HHmmss') }}
             ghcr.io/${{ github.repository }}:latest
 
