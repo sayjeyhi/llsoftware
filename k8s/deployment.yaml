@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catshoulder
+  labels:
+    app: catshoulder
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: catshoulder
+  template:
+    metadata:
+      labels:
+        app: catshoulder
+    spec:
+      containers:
+        - name: catshoulder
+          image: ghcr.io/catshoulder/website:latest
+          ports:
+            - containerPort: 80
