@@ -24,9 +24,6 @@ jobs:
           echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
           echo "REPOSITORY_NAME=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
 
-      - name: Log repository name
-        run: echo "Repository name: ${{ env.REPOSITORY_NAME }}"
-
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
         with:
