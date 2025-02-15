@@ -75,7 +75,7 @@ jobs:
           imagepullsecrets: |
             dockerconfigjson-github-com
           manifests: |
-            ./k8s/deployment.yml
-            ./k8s/service.yml
-            ./k8s/ingress.yml
+            ./k8s/deployment.yaml
+            ./k8s/service.yaml
+            ./k8s/ingress.yaml
           images: ghcr.io/${{ env.REPOSITORY_NAME }}:${{ github.sha }}
