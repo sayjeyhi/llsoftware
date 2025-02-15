@@ -60,3 +60,22 @@ jobs:
             ghcr.io/${{ env.REPOSITORY_NAME }}:${{ env.COMMIT_SHA_SHORT }}
             ghcr.io/${{ env.REPOSITORY_NAME }}:${{ env.CURRENT_DATE }}
             ghcr.io/${{ env.REPOSITORY_NAME }}:latest
+
+      - name: Kubernetes set context
+        uses: Azure/k8s-set-context@v3
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+
+      - name: Deploy
+        uses: Azure/k8s-deploy@v4.4
+        with:
+          action: deploy
+          strategy: basic
+          imagepullsecrets: |
+            dockerconfigjson-github-com
+          manifests: |
+            ./infrastructure/kubernetes/demo-app-deployment.yml
+            ./infrastructure/kubernetes/demo-app-service.yml
+            ./infrastructure/kubernetes/demo-app-ingress.yml
+          images: ghcr.io/${{ env.REPOSITORY_NAME }}:${{ github.sha }}

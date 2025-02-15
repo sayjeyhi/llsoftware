@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: catshoulder
+  name: llsoftware
   labels:
-    app: catshoulder
+    app: llsoftware
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: catshoulder
+      app: llsoftware
   template:
     metadata:
       labels:
-        app: catshoulder
+        app: llsoftware
     spec:
       containers:
-        - name: catshoulder
-          image: ghcr.io/catshoulder/website:latest
+        - name: llsoftware
+          image: ghcr.io/sayjeyhi/llsoftware:latest
           ports:
             - containerPort: 80
 
@@ -35,4 +35,3 @@ spec:
             requests:
               cpu: '250m'
               memory: '256Mi'
-          shareProcessNamespace: true

@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: catshoulder-ingress
+  name: llsoftware-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/rewrite-target: /
@@ -9,17 +9,17 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - catshoulder.dev
-        - www.catshoulder.dev
-      secretName: catshoulder-tls
+        - llsoftware.dev
+        - www.llsoftware.dev
+      secretName: llsoftware-tls
   rules:
-    - host: catshoulder.dev
+    - host: llsoftware.dev
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: catshoulder-service
+                name: llsoftware-service
                 port:
                   number: 80
