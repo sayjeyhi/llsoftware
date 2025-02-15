@@ -79,4 +79,4 @@ jobs:
             ./k8s/deployment.yaml
             ./k8s/service.yaml
             ./k8s/ingress.yaml
-          images: ghcr.io/${{ env.REPOSITORY_NAME }}:${{ github.sha }}
+          images: ghcr.io/${{ env.REPOSITORY_NAME }}:${{ env.COMMIT_SHA_SHORT }}
