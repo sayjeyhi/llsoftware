@@ -1,7 +1,9 @@
 name: Build and Push Docker Image
 
 on:
-  push
+  push:
+    branches:
+      - main # Trigger when PR is merged into the 'main' branch
 
 permissions:
   contents: read
