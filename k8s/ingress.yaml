@@ -9,11 +9,11 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - llsoftware.dev
-        - www.llsoftware.dev
+        - llsoftware.co
+        - www.llsoftware.co
       secretName: llsoftware-tls
   rules:
-    - host: llsoftware.dev
+    - host: llsoftware.co
       http:
         paths:
           - path: /
