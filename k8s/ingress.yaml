@@ -14,7 +14,7 @@ spec:
     - hosts:
         - llsoftware.co
         - www.llsoftware.co
-      secretName: llsoftware-tls
+      secretName: llsoftware-tls-fz88v
   rules:
     - host: llsoftware.co
       http:
