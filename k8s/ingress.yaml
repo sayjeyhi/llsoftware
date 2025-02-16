@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: llsoftware-ingress
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod-new"
     traefik.ingress.kubernetes.io/router.tls: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: "web,websecure"
     acme.cert-manager.io/http01-edit-in-place: "true"
@@ -13,7 +13,7 @@ spec:
     - hosts:
         - llsoftware.co
         - www.llsoftware.co
-      secretName: llsoftware-tls-new
+      secretName: llsoftware-tls-v2
   rules:
     - host: llsoftware.co
       http:
