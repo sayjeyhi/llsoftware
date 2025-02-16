@@ -6,13 +6,14 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     traefik.ingress.kubernetes.io/router.tls: "true"
     traefik.ingress.kubernetes.io/router.entrypoints: "web,websecure"
+    acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
   ingressClassName: traefik
   tls:
     - hosts:
         - llsoftware.co
         - www.llsoftware.co
-      secretName: llsoftware-tls
+      secretName: llsoftware-tls-new
   rules:
     - host: llsoftware.co
       http:
