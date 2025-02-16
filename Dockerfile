@@ -1,4 +1,4 @@
-# Use the official Nginx image
+# Serve the built React app
 FROM nginx:latest
 
 # Set working directory

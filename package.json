@@ -7,8 +7,15 @@
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",
+    "start": "npx http-server ./dist",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "k3d:delete": "k3d cluster delete llsoftware",
+    "k3d:create": "k3d cluster create llsoftware --k3s-arg=\"--disable=traefik@server:0\" --registry-create llsoftware --agents 1",
+    "cert:install": "helm repo add jetstack https://charts.jetstack.io && helm repo update && helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --set installCRDs=true",
+    "k:pods": "kubectl get pods -A",
+    "k:switch": "kubectl config use-context k3d-llsoftware",
+    "k:info": "kubectl cluster-info"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

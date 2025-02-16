@@ -18,16 +18,16 @@ spec:
         - name: llsoftware
           image: ghcr.io/sayjeyhi/llsoftware:latest
           ports:
-            - containerPort: 80
+            - containerPort: 8080
 
           livenessProbe:
             httpGet:
               path: /
-              port: 80
+              port: 8080
           readinessProbe:
             httpGet:
               path: /
-              port: 80
+              port: 8080
           resources:
             limits:
               cpu: '500m'
