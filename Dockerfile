@@ -1,5 +1,5 @@
 # Serve the built React app
-FROM nginx:latest
+FROM nginx:alpine
 
 # Set working directory
 WORKDIR /usr/share/nginx/html

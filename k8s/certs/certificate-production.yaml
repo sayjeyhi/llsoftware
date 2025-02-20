@@ -10,5 +10,8 @@ spec:
     kind: ClusterIssuer
   commonName: llsoftware.co
   dnsNames:
+    - 65.109.169.232.nip.io
     - llsoftware.co
     - www.llsoftware.co
+    - www.catshoulder.dev
+    - i18n.catshoulder.dev
